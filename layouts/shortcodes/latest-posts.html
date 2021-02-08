@@ -1,0 +1,24 @@
+<main class="list">
+<h1>Latest posts</h1>
+<ul class="posts">
+  {{ range first 3 .Site.RegularPages.ByPublishDate.Reverse }}
+  
+    {{ $pageDate := "" }}
+    
+    {{ if not .Page.Date.IsZero }}
+      {{ $pageDate = .Page.Date.Format "2006-01-02" }}
+    {{ end }}
+
+    {{ $count := .Page.WordCount }}
+
+    <li>
+      <a class="btn" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}{{ with $pageDate }}{{ printf " (%s)" . }}{{ end }}">
+        <p>{{ .LinkTitle | emojify }}</p>
+        {{ with $pageDate }}
+          <time datetime="{{ . }}">{{ . }}, {{ $count }} words</time>
+        {{ end }}
+      </a>
+    </li>
+  {{ end }}
+</ul>
+</main>

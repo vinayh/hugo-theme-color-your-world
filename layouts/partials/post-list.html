@@ -9,12 +9,14 @@
       {{ $pageDate = .Date.Format "2006-01-02" }}
     {{ end }}
 
+    {{ $count := .WordCount }}
+
     <li>
       <a class="btn" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}{{ with $pageDate }}{{ printf " (%s)" . }}{{ end }}">
         <p>{{ .LinkTitle | emojify }}</p>
 
         {{ with $pageDate }}
-          <time datetime="{{ . }}">{{ . }}</time>
+          <time datetime="{{ . }}">{{ . }}, {{ $count }} words</time>
         {{ end }}
       </a>
     </li>
