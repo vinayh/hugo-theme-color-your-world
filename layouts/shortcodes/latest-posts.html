@@ -1,7 +1,7 @@
 <main class="list">
 <h1>Latest posts</h1>
 <ul class="posts">
-  {{ range first 3 .Site.RegularPages.ByPublishDate.Reverse }}
+  {{ range first 3 .Site.Taxonomies.categories.post }}
   
     {{ $pageDate := "" }}
     
